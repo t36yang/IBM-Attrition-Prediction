@@ -1,28 +1,28 @@
 # IBM Attrition Prediction - People Analytics #
-“Why did my employees want to leave?”
+“Why do my employees want to leave?”
 
-This is the first question that most leaders would ask when there’s an increasing trend of turnover rate at their company. Popular hypotheses to answer this question are related to “income level”, “age generation”, “job satisfaction”, “work life balance”, etc. While there are numerous reasons for employees' departure, what are the factors that company leads should target the most with limited time and resources? Is it possible to predict attrition in the future to prevent the serious implications for the business? 
+This is a question that many leaders would ask when they notice an increasing trend of turnover rate at their company. Possible explanations for this trend include factors such as “income level”, “age generation”, “job satisfaction”, “work life balance”, etc. While there are many reasons that employees may leave, what are the most important for company leaders to focus on, given limited time and resources? Is it possible to predict future attrition and prevent its negative effects on the business? 
 
-Through conducting calculations over IBM Attrition Dataset using five different machine learning algorithms and exploratory data analysis, recommendations and an attrition model will be made to predict attrition in employees and help business leaders formulate strategies to improve employees retention and workforce planning. 
+By analyzing the IBM Attrition Dataset using five different machine learning algorithms and performing exploratory data analysis, we can make recommendations and create an attrition model to help predict employee attrition and assist business leaders in developing strategies to improve retention and workforce planning. 
 ![High-employee-turnover](https://user-images.githubusercontent.com/117051182/211091642-b6042f6a-242d-4b3c-893d-b0cc626e8fe8.jpeg)
 
 ## Dataset Description ##
-“Attrition at IBM” dataset consists of 1470 data points, of which 237 belong to the employees who left the company. The dataset was retrieved from [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/"Kaggle") on January 2, 2022.
+“Attrition at IBM” dataset consists of 1470 data points, of which 237 correspond to employees who left the company. The dataset was retrieved from [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/"Kaggle") on January 2, 2022.
 
-The dataset includes the employees information for three departments: Sales, Human Resources, Research & Development.  
+The dataset includes employees information for three departments: Sales, Human Resources, Research & Development.  
 
 On the dataset there were 35 features populated, including: income, personal information, job satisfaction, training time, department, job level, etc.
 
-Other features might be needed for the analysis but were not included: termination reason (involuntary/voluntary), location, employee type (regular or contract).
+Other features might be useful for the analysis but were not included: termination reason (involuntary/voluntary), location, employee type (regular or contract).
 
 ## Preprocessing - Data Cleaning and Feature Engineering ##
-Through running a heatmap to examine the correlations between different features, the following columns are removed for data cleanness:
+We ran a heatmap to examine the correlations between different features and removed the following columns for data cleaning purposes:
 * Job Level: highly correlated with income. Removed due to redundancy. 
 * Monthly Rate and Hourly Rate: inaccurate labeling of the data. Removed due to inaccuracy. 
-* Over 18: only one unique value in the dataset. Removed due to purposeless information. 
+* Over 18: only one unique value in the dataset. Removed due to the lack of useful information. 
 
 The following features are created to the deepen the analysis: 
-* Turnover rate: examining the ratio of attrition workers in different generations, income level, ratings (job satisfaction, involvement, worklifebalance), etc. 
+* Turnover rate: examining the ratio of attrition among different generations, income levels, ratings (job satisfaction, involvement, worklifebalance), etc. 
 * Yearly Income (Annualized income): for easier visualization and interpretation. 
 * Income Distribution: grouping employees’ annualized incomes by 20, 50, 75 percentiles to analyze target income levels on the same scale. 
 
@@ -40,13 +40,13 @@ Alternative Hypothesis: there’s an impact of the independent variables to the 
 
 ## Exploratory Data Analysis ##
 #### Department vs Gender ####
-As the chart shows below, there are more male workers than females in all departments. R&D has more employees than Sales and HR. Due to the differences in the number of employees for the three departments, turnover rate will be calculated to display the proportion of certain classes. 
+As shown in the chart below, there are more male workers than females in all departments. R&D has more employees than the Sales and HR departments. To account for the differences in the number of employees across departments, we will calculate turnover rate to display the proportion of certain classes. 
 
 
 ![general gender](https://user-images.githubusercontent.com/117051182/211094026-c1380278-719c-4b9d-af23-2a90e1a56704.png)
 
 #### Age vs Annual Income vs Attrition ####
-The green dots are the employees who are no longer with IBM. As the chart shows, the majority of the attrition employees are ~ 30 years old and below 50k. As the age progresses to above 30, the number of attrition begins to reduce and the income enters in the 100k range. 
+The green dots represent the employees who are no longer with IBM. The chart shows that the majority of these employees are around 30 years old and have an annual income of less than $50,000. As the age increases above 30, the number of employee who leave the company decreases, and the annual income increases to around $100,000. 
 Note that 0 indicates the active employees and 1 indicates the attrition employees. 
 
 
@@ -54,19 +54,19 @@ Note that 0 indicates the active employees and 1 indicates the attrition employe
 
 
 #### Years of Service and Salary Increase Hike Percentage ####
-The data also indicates that employees who are with IBM less than 5 years and have less than 12.5 percent salary hike are most likely to leave the company.
+The data also suggests that employees who have been with IBM for less than 5 years and have received a salary increase of less than 12.5% are more likely to leave the company.
 
 
 ![yearsatcompany](https://user-images.githubusercontent.com/117051182/211096093-18cabe09-4032-4a50-8250-f5cb7d61b627.png) ![percentsalaryhike](https://user-images.githubusercontent.com/117051182/211096044-daba60b4-9858-41da-a5b7-7b75b330500d.png)
 
 #### Turnover Rate by Different Job Roles ####
-In terms of turnover rate by job roles, the sales reps are showing to have the highest turnover following laboratory technicians and human resources.
+In terms of turnover rate by job roles, sales reps have the highest rate of turnover, followed by laboratory technicians and human resources.
 
 
 ![turnover rate by dept](https://user-images.githubusercontent.com/117051182/211094740-8b6998a3-44cd-444f-af11-7f30e057303b.png)
 
 #### Income Distribution for Departed Employees ####
-Comparing the income level for active and attrition employees, there’s a spike in the number of attrition employees below 50k. 
+When comparing the income level of active and departing employees, there’s a spike in the number of departing employees with an annual income of less than $50,000. 
 
 Attrition Employee Income Distribution
 
@@ -77,23 +77,23 @@ For job satisfaction, job involvement, worklifebalance, the results are consiste
 
 ![Turnover Rate Job Satisfaction](https://user-images.githubusercontent.com/117051182/211095285-aea855df-a9c2-4b4c-a732-c2b96427d7dd.png)
 
-Human Resources (45%)  has the highest turnover in the employees who rated "1" for Job Satisfaction 
+Human Resources has the highest turnover among employees who rated their Job Satisfaction as 1 (45% turnover).
 
 ![turnover job involvement](https://user-images.githubusercontent.com/117051182/211095339-73f9c247-6959-429b-9828-572fa20ea210.png)
 
-Sales has the highest turnover in the employees who rated "1" for Job Involvement 
+Sales has the highest turnover among employees who rated their Job Involvement as 1 (45% turnover).
 
 ![turnover rate worklife bal](https://user-images.githubusercontent.com/117051182/211095372-7b409475-9c60-41e7-b39d-f7fb4a9103e5.png)
 
-Sales (37.5%) has the highest turnover in the employees who rated "1" for work life balance 
+Sales has the highest turnover among employees who rated their WorkLifeBalance as 1 (37.5% turnover).
 
 #### Age Generation vs Turnover Rate ####
-Younger age groups (Millennials and Gen Z) have higher turnover rates
+Younger age groups such as Millennials and Gen Z, have higher turnover rates
 
 ![gen](https://user-images.githubusercontent.com/117051182/211095577-8c0f27aa-392a-4b66-b3ce-e117aaf26dbf.png)
 
 #### Distance from home vs Attrition ####
-Out of curiosity, a chart was produced to review the correlation between distance from home and attrition. Surprisingly, distance from home doesn’t influence attrition result. 
+Out of curiosity, we created a chart to review the correlation between distance from home and attrition. Interestingly, distance from home does not seem to significantly impact attrition. 
 
 ![distancefromhome](https://user-images.githubusercontent.com/117051182/211096654-9e8020e7-d086-4fc8-a1e6-5fe9286715be.png)
 
@@ -102,26 +102,26 @@ There were five machine learning model performed and below are the results after
 
 <img width="724" alt="Screen Shot 2023-01-06 at 3 45 08 PM" src="https://user-images.githubusercontent.com/117051182/211097135-d45b18e4-6d6b-4575-b2ba-bca84b24d59e.png">
 
-Amongst the prediction results from the five models, Logistic Regression model result was chosen as it displays higher scores overall. 
+Among the prediction results from the five models, we selected Logistic Regression model result because it had the highest overall scores.
 
-The Rate of Change line graph below confirms the selection as the yellow line (Logistic Regression) is closer towards the 1.0 True positive. 
+The 'Rate of Change' line graph below supports our selection, as the yellow line (Logistic Regression) is closer towards the 1.0 True positive value. 
 
 ![download](https://user-images.githubusercontent.com/117051182/211097338-99f7d986-b70a-46e0-bd11-6d9aed80e396.png)
 
-Based on the result, the prediction model is able to achieve a higher than 80% for Accuracy but there’s not enough dataset to predict a better score for Precision, Recall and F1. Due to the imbalanced dataset for the target feature, it is more reasonable to review all scores to avoid a biased analysis. 
+Based on the results, the prediction model is able to achieve an accuracy of more than 80%. However, due to the limited size of the dataset, it is difficult to predict higher scores for precision, recall, and F1. Because the dataset for the target feature is imbalanced, it is important to consider all scores to avoid a biased analysis".
 
-Below is the confusion matrix that it displays the overall test scores for the prediction model:
+The confusion matrix below shows the overall test scores for the prediction model:
 
 ![confusion](https://user-images.githubusercontent.com/117051182/211097530-7a4c7c1b-5cb2-4d79-8f41-71d6b601d218.png)
 
 
 True Attrition (positive): 18 False Attrition (positive): 24 True Active (negative): 243 False Active (negative): 12
 
-Although the prediction model requires further adjustment and dataset to achieve a higher prediction score, it is important to review what are the important features that contribute to both Attrition and Active employees.
+While the prediction model can be improved with further adjustment and a larger dataset, it is important to identify the key features that contribute to both departing and active employees.
 
 ![factors](https://user-images.githubusercontent.com/117051182/211098243-f2a0bac8-5e74-44fc-b80e-fbdbbe9e5b95.png)
 
-Depending on the business problem that the team aims to tackle, a weighted feature chart was created to display the major factors that contribute to result employee Attrition and the factors that made employees stay. 
+To address the business problem at hand, we created a weighted feature chart to display the major factors that contribute to employee attrition and the factors that encourage employees to stay. The weights reflect the importance of each feature in relation to the problem being addressed. 
 
 Main factors for Attrition: 
 * Yearly Income, EnvironmentSatisfaction, Age
@@ -130,16 +130,17 @@ Main factors for Attrition:
 
 
 ## Recommendations to IBM ##
-* To reduce turnover rate for the Sales, HR and R&D department, it is recommended to consider increasing the salary, improving the work environment.
-* Emphasizing on implementing employee retention programs for younger age employees to decrease the chances of leaving IBM at an early career stage. 
-* Conduct managerial training for managers to get managers educated over the topic of talent retention as Years with Current Manager is one of the top factors for retaining employees.
-* Provide an education assistance program if there’s any to help employees get more educated. 
+To reduce turnover rate in the Sales, HR, and R&D department, we recommend considering the following strategies: 
+*Increasing salary and improving the work environment.
+*Implementing employee retention programs for younger employees to decrease the likelihood of leaving IBM at an early career stage. 
+*Providing managerial training on talent retention, as years with current manager is one of the top factors for retaining employees.
+*Offering an education assistance program to help employees further their education. 
 
 ## Summary: Challenges and Next Step ##
 
-As the dataset was extracted from an online source, the dataset is missing certain important information such as the reasons for employee leaving (voluntary or involuntary), time series information for performance score, attendance, job satisfaction, etc. To predict attrition, external factors should also be considered such as unemployment rate, industry information, inflation rate, etc. 
+Since the dataset was extracted from an online source, it is missing important information such as the reasons for employee departure (voluntary or involuntary), time series information for performance score, attendance, and job satisfaction. To more accurately predict attrition, external factors such as unemployment rate, industry information, inflation rate should also be considered. 
 
-For next steps, I hope to obtain the missing data and re-build the prediction model to achieve better prediction results. 
+For future work, I hope to obtain the missing data and rebuild the prediction model to improve its prediction results. 
 
 
 
